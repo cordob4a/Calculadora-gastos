@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carga de Gasto</title>
+</head>
+<body>
+<div class = "carga_gastos">
+    <form action="carga_gastos" method="POST">
+        <label>Gasto: </label>
+        <input type="text" name="gasto" required>
+
+        <label>Monto: </label>
+        <input type="number" name="monto" required>
+
+        <label>Fecha: </label>
+        <input type="date" name="fecha" required>
+
+        <label>Descripción del gasto</label>
+        <input type="text" name="desc" required>
+
+        <button type="submit">Cargar</button>
+    </form>
+</div>
+</body>
+</html>
