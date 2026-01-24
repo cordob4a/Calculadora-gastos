@@ -1,0 +1,29 @@
+services:
+  db:
+    image: postgres:16
+    container_name: calculadora_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: gastos_db
+      POSTGRES_USER: gastos_user
+      POSTGRES_PASSWORD: gastos_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    build:
+      context: .
+      dockerfile: docker/dockerfile
+    container_name: calculadora_app
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgresql+psycopg2://gastos_user:gastos_pass@db:5432/gastos_db
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+
+volumes:
+  postgres_data:

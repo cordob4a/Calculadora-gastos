@@ -4,11 +4,12 @@ from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
 from datetime import datetime
 
-from app.db.database import SessionLocal
-from app.models.models import Gasto
+from db.database import SessionLocal
+from models.models import Gasto
 
 router = APIRouter()
-templates = Jinja2Templates(directory="app/templates")
+router = APIRouter()
+templates = Jinja2Templates(directory="templates")
 def get_db():
     db = SessionLocal()
     try:
@@ -22,7 +23,7 @@ async def formulario(request: Request):
         {"request": request}
     )
 @router.post("/carga_gastos", response_class=HTMLResponse)
-async def cargar_gasto(
+async def cargar_gastos(
     request: Request,
     gasto: str = Form(...),
     monto: str = Form(...),
